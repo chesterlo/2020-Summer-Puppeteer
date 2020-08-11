@@ -19,9 +19,9 @@ app.post('/pdf/', (req, res) => {
 		var page = await browser.newPage();
 
 		var css = fs.readFileSync(req.body.css, 'utf8');
-		var header = req.body.header;
-		var footer = req.body.footer;
-		var body = req.body.body;
+		var header = fs.readFileSync(req.body.header, 'utf8');
+		var footer = fs.readFileSync(req.body.footer, 'utf8');
+		var body = fs.readFileSync(req.body.body, 'utf8');
 
 		await page.setContent(body, {waitUntil: 'networkidle0'}); 
 		await page.addStyleTag({content: css});
